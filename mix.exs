@@ -4,14 +4,14 @@ defmodule ExDataURI.Mixfile do
   def project do
     [
       app: :exdatauri,
-      version: "0.2.0",
+      version: "0.3.0",
       description: "A RFC 2397 URI parser for Elixir",
-      elixir: "~> 1.3",
+      elixir: "~> 1.11",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps,
+      deps: deps(),
       test_coverage: [tool: ExCoveralls],
-      package: package,
+      package: package(),
     ]
   end
 
@@ -19,7 +19,7 @@ defmodule ExDataURI.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   # Dependencies can be Hex packages:
@@ -33,13 +33,14 @@ defmodule ExDataURI.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:iconverl, github: "edescourtis/iconverl", tag: "3.0.17"},
+      {:iconverl, "~> 3.0"},
 
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.8", only: :dev},
       {:dialyze, "~> 0.2.0", only: :dev},
 
       {:excoveralls, "~> 0.3", only: :test},
+      {:castore, "~> 1.0", only: :test}
     ]
   end
 
